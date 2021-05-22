@@ -65,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'category.context_processors.menu_links',
+                # 이렇게 등록해두면 templates에서 원할때마다 menu_links를 불러올 수 있음
             ],
         },
     },
