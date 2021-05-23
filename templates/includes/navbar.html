@@ -39,7 +39,7 @@
 			<div class="dropdown-menu">
 				{% comment %} category/context_processors.py에 정의한 걸 사용 {% endcomment %}
 				{% for category in links %}
-				<a class="dropdown-item" href="#">{{ category.category_name }}</a>
+				<a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
 				{% endfor %}
 			</div>
 		</div>  <!-- category-wrap.// -->
