@@ -31,17 +31,18 @@
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
 			<div class="card-body">
-				
+
 				<ul class="list-menu">
-					<li><a href="{% url 'store' %}">All Products</a></li>
+					<li><a href="{% url 'store' %}">All Products  </a></li>
 					{% for category in links %}
-						<li><a href="{{ category.get_url }}">{{ category.category_name }}</a></li>
+				<li><a href="{{ category.get_url }}">{{ category.category_name }}  </a></li>
 					{% endfor %}
 				</ul>
 
 			</div> <!-- card-body.// -->
 		</div>
 	</article> <!-- filter-group  .// -->
+
 	<article class="filter-group">
 		<header class="card-header">
 			<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
@@ -133,8 +134,9 @@
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
-				
-				<img src="{{ product.images.url }}">
+				<a href={{ product.get_url }}>
+					<img src="{{ product.images.url }}">
+				</a>
 				
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
