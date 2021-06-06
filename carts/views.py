@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Cart, CartItem
 from store.models import Product
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 from django.http import HttpResponse
@@ -35,7 +36,7 @@ def add_cart(request, product_id):
         )
         cart_item.save()
     
-    return HttpResponse(cart_item.product)
+    return HttpResponse(cart_item.quantity)
     exit()
     return redirect('cart')
 
@@ -44,5 +45,19 @@ def add_cart(request, product_id):
 
 
 
-def cart(request):
+def cart(request, total=0, quantity=0, cart_items=None):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_actice=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price * cart_item.quantity)
+            quantity += cart_item.quantity
+    except ObjectNotExist:
+        pass
+
+    context = {
+        'total', total,
+        'quantity', quantity,
+        'cart_items', cart_items
+    }
     return render(request, 'store/cart.html')
